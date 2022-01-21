@@ -1,6 +1,7 @@
 FROM openjdk:11-slim-buster as build
 COPY .mvn .mvn
 COPY mvnw .
+RUN chmod +x mvnw
 COPY pom.xml .
 RUN ./mvnw -B dependency:go-offline
 COPY src src
