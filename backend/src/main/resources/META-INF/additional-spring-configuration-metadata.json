@@ -1,0 +1,74 @@
+{
+  "properties": [
+    {
+      "name": "S3.bucket",
+      "type": "java.lang.String",
+      "description": "The name of the S3 bucket to store media in."
+    },
+    {
+      "name": "S3.endpoint.url",
+      "type": "java.lang.String",
+      "description": "The url of the S3 endpoint without protocol."
+    },
+    {
+      "name": "S3.endpoint.region",
+      "type": "java.lang.String",
+      "description": "The region of the S3 endpoint (ams3 for example)."
+    },
+    {
+      "name": "S3.credentials.access-key",
+      "type": "java.lang.String",
+      "description": "The access key (username) of the S3 credentials."
+    },
+    {
+      "name": "S3.credentials.secret-key",
+      "type": "java.lang.String",
+      "description": "The secret key (password) of the S3 credentials."
+    },
+    {
+      "name": "S3.endpoint.prefix",
+      "type": "java.lang.String",
+      "description": "The prefix path to use."
+    },
+    {
+      "name": "superuser.hashed-password",
+      "type": "java.lang.String",
+      "description": "The ArgonID hashed password of the superuser."
+    },
+    {
+      "name": "superuser.username",
+      "type": "java.lang.String",
+      "description": "The username of the superuser."
+    },
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String",
+      "description": "256 bit secret key for signing the JWT."
+    },
+    {
+      "name": "jwt.lifetime",
+      "type": "java.lang.Long",
+      "description": "The max lifetime of a JWT and cookie in milliseconds."
+    },
+    {
+      "name": "jwt.cookie-name",
+      "type": "java.lang.String",
+      "description": "The name of the cookie containing the JWT."
+    },
+    {
+      "name": "jwt.cookie-secure",
+      "type": "java.lang.String",
+      "description": "Sets the JWT cookie to secure or insecure."
+    },
+    {
+      "name": "cors.allowed-origins",
+      "type": "java.lang.String",
+      "description": "List of allowed origins separated by a comma."
+    },
+    {
+      "name": "jwt.cookie.restrict-site",
+      "type": "java.lang.Boolean",
+      "description": "Set to true to prevent the JWT cookie from being sent to other sites."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+<header>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <h1>Your cart</h1>
+        <span class="header-spacer"></span>
+        <button mat-fab (click)="emptyCart()" color="warn" matTooltipPosition="left" matTooltip="Empty your cart"><mat-icon>delete</mat-icon></button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
+
+<article class="content">
+  <mat-card class="items">
+    <mat-card-title>Products</mat-card-title>
+    <section *ngIf="products.length === 0" class="no-products">
+      <mat-icon>shopping_cart</mat-icon>
+      <p>There are no items in your cart.</p>
+    </section>
+    <mat-list class="product-list" *ngIf="products.length > 0">
+      <ng-container *ngFor="let item of products">
+        <mat-list-item>
+          <img mat-list-avatar [src]="item.product?.imageUrl">
+          <div class="product-name">{{ item.product?.name }}</div>
+          <div class="amount-container">
+            <mat-form-field class="amount-input" >
+              <mat-label>Amount</mat-label>
+              <input matInput (change)="amountChange(item.productId, $event)" (keydown)="$event.preventDefault()" type="number" [value]="item.amount.toString()" min="0" max="50">
+            </mat-form-field>
+          </div>
+          <div>&euro; {{ item.product?.price }},-</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </mat-list>
+  </mat-card>
+  <mat-card class="overview">
+    <mat-card-title>Overview & continue</mat-card-title>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item>
+          <div mat-line>Shipping costs</div>
+          <div>Free</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div mat-line>Total amount</div>
+          <small mat-line>Incl. btw</small>
+          <div>&euro; {{ getTotal() }},-</div>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <div [matTooltip]="products.length === 0 ? 'Your cart is empty' : ''">
+      <button mat-flat-button color="primary" [disabled]="products.length === 0">Continue to checkout</button>
+    </div>
+  </mat-card>
+</article>
+

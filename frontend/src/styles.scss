@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$frontend-primary: mat.define-palette(mat.$indigo-palette);
+$frontend-accent: mat.define-palette(mat.$grey-palette, A200, A100, A400);
+$frontend-warn: mat.define-palette(mat.$red-palette);
+
+$frontend-theme: mat.define-light-theme((
+  color: (
+    primary: $frontend-primary,
+    accent: $frontend-accent,
+    warn: $frontend-warn,
+  )
+));
+
+@include mat.all-component-themes($frontend-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

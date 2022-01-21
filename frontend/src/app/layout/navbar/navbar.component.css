@@ -1,0 +1,16 @@
+.nav-spacer {
+  flex: 1 1 auto;
+}
+
+.nav-categories {
+  margin-left: 1rem;
+}
+
+.nav-buttons > button {
+  margin: 0 .2rem;
+}
+
+.logo-icon {
+  margin-right: .5rem;
+}
+

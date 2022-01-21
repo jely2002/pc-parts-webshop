@@ -1,0 +1,39 @@
+mat-card {
+  max-width: 350px;
+}
+
+.product-image {
+  align-self: center;
+  max-width: 250px;
+}
+
+mat-card-subtitle {
+  margin-bottom: 2rem;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-list-item {
+  height: 30px !important;
+}
+
+mat-card-actions {
+  margin-bottom: .5rem !important;
+  display: flex;
+  justify-content: space-around;
+}
+
+.mat-list-item-content {
+  padding: 0 !important;
+}
+
+.price-number {
+  font-size: 25px;
+}
+
+.price {
+  margin: 1.5rem 1.5rem 0;
+}

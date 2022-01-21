@@ -1,0 +1,23 @@
+mat-toolbar-row {
+  height: 6rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-buttons > button {
+  margin: 0 .2rem;
+}
+
+.footer-logo {
+  display: flex;
+  font-size: 1.5rem;
+}
+
+.footer-logo > mat-icon  {
+  font-size: 30px;
+}
+
+.logo-icon {
+  margin-right: .5rem;
+}
+

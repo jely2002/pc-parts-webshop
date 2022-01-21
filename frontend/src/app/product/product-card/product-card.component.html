@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-title>{{ product.name }}</mat-card-title>
+  <mat-card-subtitle>{{ product.description }}</mat-card-subtitle>
+  <mat-card-content>
+    <img class="product-image" alt="product-image" [src]="product.imageUrl" mat-card-image>
+    <mat-list>
+      <mat-list-item *ngFor="let property of highlightedProperties">
+        <mat-icon matListIcon>check</mat-icon>
+        <p matLine>
+          <span>{{ property.description }}</span>
+        </p>
+      </mat-list-item>
+    </mat-list>
+    <section class="price">
+      <p class="price-number">&euro; {{ product.price }},-</p>
+      <small>incl. btw</small>
+    </section>
+  </mat-card-content>
+  <mat-card-actions>
+    <div [matTooltip]="product.hasStock ? '' : 'This product is out of stock'">
+      <button
+        mat-flat-button
+        [disabled]="!product.hasStock"
+        (click)="addToCart(product)"
+        color="primary">
+        <mat-icon matListIcon>{{ product.hasStock ? 'add_shopping_cart' : 'production_quantity_limits' }}</mat-icon>
+        Add to cart
+      </button>
+    </div>
+    <button mat-flat-button color="accent">
+      <mat-icon matListIcon>build</mat-icon>
+      Add to build
+    </button>
+  </mat-card-actions>
+</mat-card>

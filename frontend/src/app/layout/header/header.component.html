@@ -1,0 +1,10 @@
+<header *ngIf="showHeader">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <section>
+        <h1>{{ currentCategory?.name }}</h1>
+        <p>{{ currentCategory?.description }}</p>
+      </section>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
