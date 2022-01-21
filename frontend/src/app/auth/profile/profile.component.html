@@ -1,1 +1,6 @@
-<p>profile works!</p>
+<h1>Your profile</h1>
+<p>{{ user.firstName }}</p>
+<p>{{ user.middleName }}</p>
+<p>{{ user.lastName }}</p>
+<p>{{ user.email }}</p>
+<button mat-flat-button (click)="logout()" color="warn">Logout</button>
