@@ -8,6 +8,11 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { RouterModule } from "@angular/router";
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { ReactiveFormsModule } from "@angular/forms";
 
 
 
@@ -15,7 +20,8 @@ import { RouterModule } from "@angular/router";
   declarations: [
     SplashComponent,
     CategoryListComponent,
-    LandingComponent
+    LandingComponent,
+    AddCategoryComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +29,11 @@ import { RouterModule } from "@angular/router";
     MatIconModule,
     MatCardModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ]
 })
 export class LandingModule { }

@@ -1,0 +1,27 @@
+<mat-expansion-panel (opened)="panelOpenState = true"
+                     (closed)="panelOpenState = false"
+                     [expanded]="panelOpenState"
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <button mat-flat-button color="primary">{{ panelOpenState ? "Cancel" : "Add category" }}</button>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form (submit)="add()" [formGroup]="categoryForm">
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="categoryForm.controls['name'].hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Description</mat-label>
+      <input type="text" matInput formControlName="description" [errorStateMatcher]="matcher">
+      <mat-error *ngIf="categoryForm.controls['description'].hasError('required')">
+        Description is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button [disabled]="!categoryForm.valid" mat-flat-button type="submit" color="primary">Add</button>
+  </form>
+</mat-expansion-panel>

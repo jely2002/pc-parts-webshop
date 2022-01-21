@@ -15,4 +15,12 @@ export class CategoryService {
     return this.http.get<CategoryModel[]>(`${environment.apiUrl}/category`);
   }
 
+  public delete(category: string): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/category/${category}`);
+  }
+
+  public add(category: CategoryModel): Observable<CategoryModel> {
+    return this.http.post<CategoryModel>(`${environment.apiUrl}/category`, category);
+  }
+
 }
