@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "../../environments/environment";
 import { PublicKeyResponseModel } from "./public-key-response.model";
 import { CryptService } from "./crypt.service";
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,14 @@ export class AuthService {
   }
 
   public authenticatedUser: UserModel | null = null;
+
+  getUser(): UserModel {
+    return JSON.parse(localStorage.getItem('user') || '{}') as UserModel;
+  }
+
+  public checkIfLoggedIn(): Observable<UserModel> {
+    return this.httpClient.get<UserModel>(environment.apiUrl + '/auth/user');
+  }
 
   login(email: string, password: string): Promise<UserModel> {
     return new Promise((resolve, reject) => {
@@ -32,6 +41,7 @@ export class AuthService {
           }).subscribe({
             next: (user: UserModel) => {
               this.authenticatedUser = user;
+              localStorage.setItem('user', JSON.stringify(user));
               resolve(user);
             },
             error: (error: HttpErrorResponse) => {
@@ -46,9 +56,10 @@ export class AuthService {
     });
   }
 
-  logout() {
+  logout(): Observable<void> {
     this.authenticatedUser = null;
-    this.httpClient.post(environment.apiUrl + '/auth/logout', {});
+    localStorage.clear();
+    return this.httpClient.post<void>(environment.apiUrl + '/auth/logout', {logout: true});
   }
 
   register(email: string, password: string, firstName: string, middleName: string, lastName: string): Promise<UserModel> {
@@ -66,6 +77,7 @@ export class AuthService {
           }).subscribe({
             next: (user: UserModel) => {
               this.authenticatedUser = user;
+              localStorage.setItem('user', JSON.stringify(user));
               resolve(user);
             },
             error: (error: HttpErrorResponse) => {

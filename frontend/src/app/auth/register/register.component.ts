@@ -4,6 +4,7 @@ import { FieldErrorStateMatcher, FormErrorStateMatcher } from "../login/login.co
 import { AuthService } from "../auth.service";
 import { SnackbarService } from "../../layout/snackbar.service";
 import { HttpErrorResponse } from "@angular/common/http";
+import { Router } from "@angular/router";
 
 export const passwordMatchingValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
   const password = control.get('password');
@@ -22,6 +23,7 @@ export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private snackbarService: SnackbarService,
+    private router: Router,
   ) { }
 
   registerForm = new FormGroup({
@@ -40,6 +42,7 @@ export class RegisterComponent {
     const data = this.registerForm.value;
     this.authService.register(data.email, data.password, data.firstName, data.middleName, data.lastName).then(user => {
       this.snackbarService.openSnackBar(`Welcome to PC Parts ${user.firstName}!`, '', 5000);
+      this.router.navigate(['profile']);
     }).catch((error: HttpErrorResponse) => {
       switch (error.status) {
         case 409:

@@ -11,6 +11,7 @@
         <button [routerLink]="'cart'" mat-icon-button><mat-icon>shopping_cart</mat-icon></button>
         <button mat-icon-button><mat-icon>build</mat-icon></button>
         <button [routerLink]="'login'" mat-icon-button><mat-icon>account_circle</mat-icon></button>
+        <p [routerLink]="'profile'" class="username" *ngIf="user">{{ user.firstName }}</p>
       </section>
     </mat-toolbar-row>
   </mat-toolbar>

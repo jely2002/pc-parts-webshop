@@ -3,6 +3,7 @@ import { ErrorStateMatcher } from "@angular/material/core";
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from "@angular/forms";
 import { AuthService } from "../auth.service";
 import { SnackbarService } from "../../layout/snackbar.service";
+import { Router } from "@angular/router";
 
 export class FieldErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -28,6 +29,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private snackbarService: SnackbarService,
+    private router: Router,
   ) { }
 
   loginForm = new FormGroup({
@@ -41,6 +43,7 @@ export class LoginComponent {
     const data = this.loginForm.value;
     this.authService.login(data.email, data.password).then(user => {
       this.snackbarService.openSnackBar(`Welcome back ${user.firstName}!`, '', 5000);
+      this.router.navigate(['profile']);
     }).catch(error => {
       this.snackbarService.openSnackBar('Username or password do not match', '', 5000);
     });

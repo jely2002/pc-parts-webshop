@@ -18,3 +18,8 @@
   cursor: pointer;
 }
 
+.username {
+  display: inline;
+  font-size: 15px;
+  cursor: pointer;
+}
