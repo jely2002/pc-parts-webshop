@@ -61,6 +61,16 @@ mat-card {
   width: 100%;
 }
 
+@media screen and (max-width: 750px) {
+  .content {
+    flex-direction: column;
+  }
+  .content > .overview {
+    flex-grow: 1;
+    width: auto;
+  }
+}
+
 .items {
   flex-grow: 1;
   flex-shrink: 1;

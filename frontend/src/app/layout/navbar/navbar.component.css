@@ -2,10 +2,6 @@
   flex: 1 1 auto;
 }
 
-.nav-categories {
-  margin-left: 1rem;
-}
-
 .nav-buttons > button {
   margin: 0 .2rem;
 }
@@ -22,4 +18,14 @@
   display: inline;
   font-size: 15px;
   cursor: pointer;
+}
+
+mat-toolbar-row {
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 575px) {
+  .nav-categories {
+    display: none;
+  }
 }

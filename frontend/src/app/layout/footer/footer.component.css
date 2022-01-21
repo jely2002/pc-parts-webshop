@@ -1,7 +1,18 @@
 mat-toolbar-row {
   height: 6rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+}
+
+@media screen and (max-width: 992px) {
+  h1 {
+    display: none;
+  }
+}
+
+h1 {
+  font-size: 20px;
 }
 
 .footer-buttons > button {
