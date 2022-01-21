@@ -11,6 +11,7 @@ import { LayoutModule } from "./layout/layout.module";
 import { HttpClientModule } from "@angular/common/http";
 import { CartModule } from "./cart/cart.module";
 import { AuthModule } from "./auth/auth.module";
+import { LandingModule } from "./landing/landing.module";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AuthModule } from "./auth/auth.module";
     HttpClientModule,
     CartModule,
     AuthModule,
+    LandingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

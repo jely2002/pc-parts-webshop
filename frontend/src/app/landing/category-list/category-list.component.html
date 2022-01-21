@@ -1,0 +1,9 @@
+<section>
+  <mat-card *ngFor="let category of categories">
+    <mat-card-title>{{ category.name }}</mat-card-title>
+    <mat-card-content>{{ category.description }}</mat-card-content>
+    <mat-card-actions>
+      <button [routerLink]="'parts/' + category.name.toLowerCase()" mat-flat-button color="primary">View products</button>
+    </mat-card-actions>
+  </mat-card>
+</section>

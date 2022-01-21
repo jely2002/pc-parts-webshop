@@ -1,0 +1,9 @@
+section {
+  display: flex;
+}
+
+mat-card {
+  width: 300px;
+  margin: 2rem;
+  margin: 2rem;
+}

@@ -1,8 +1,8 @@
 <nav>
   <mat-toolbar color="primary">
     <mat-toolbar-row class="mat-elevation-z8">
-      <mat-icon class="logo-icon" aria-hidden="false" aria-label="user verified icon">memory</mat-icon>
-      <span>PC Parts</span>
+        <mat-icon [routerLink]="'/'" class="logo-icon" aria-hidden="false" aria-label="user verified icon">memory</mat-icon>
+        <span class="logo-text" [routerLink]="'/'">PC Parts</span>
       <section class="nav-categories">
         <a mat-button [routerLink]="'parts/' + category.name.toLowerCase()" *ngFor="let category of categories">{{ category.name }}</a>
       </section>

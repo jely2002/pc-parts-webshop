@@ -14,3 +14,7 @@
   margin-right: .5rem;
 }
 
+.logo-text, .logo-icon {
+  cursor: pointer;
+}
+
