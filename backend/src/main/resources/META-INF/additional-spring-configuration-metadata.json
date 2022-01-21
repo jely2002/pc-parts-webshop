@@ -41,6 +41,16 @@
       "description": "The username of the superuser."
     },
     {
+      "name": "superuser.private-key",
+      "type": "java.lang.String",
+      "description": "The private key of the superuser."
+    },
+    {
+      "name": "superuser.public-key",
+      "type": "java.lang.String",
+      "description": "The public key of the superuser."
+    },
+    {
       "name": "jwt.secret",
       "type": "java.lang.String",
       "description": "256 bit secret key for signing the JWT."

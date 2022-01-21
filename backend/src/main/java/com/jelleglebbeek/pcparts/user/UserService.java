@@ -10,6 +10,7 @@ import com.jelleglebbeek.pcparts.user.entities.CreateUserRequest;
 import com.jelleglebbeek.pcparts.user.entities.User;
 import com.jelleglebbeek.pcparts.user.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,19 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final Argon2PasswordEncoder argon2PasswordEncoder;
+
+    @Value("${superuser.username}")
+    private String superUserUsername;
+
+    @Value("${superuser.hashed-password}")
+    private String superUserPassword;
+
+    @Value("${superuser.public-key}")
+    private String superUserPublicKey;
+
+    @Value("${superuser.private-key}")
+    private String superUserPrivateKey;
+
 
     @Autowired
     public UserService(UserRepository userRepository, Argon2PasswordEncoder argon2PasswordEncoder) {
@@ -80,6 +94,17 @@ public class UserService {
     }
 
     public User findOneByEmail(String email) {
+        if (email.equals(superUserUsername)) {
+            User user = new User();
+            user.setRole(Role.ADMIN);
+            user.setEmail(superUserUsername);
+            user.setPassword(new String(Base64.getDecoder().decode(superUserPassword)));
+            user.setFirstName("Administrator");
+            user.setLastName("PCparts");
+            user.setPublicKey(superUserPublicKey);
+            user.setPrivateKey(superUserPrivateKey);
+            return user;
+        }
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException(User.class));
     }
