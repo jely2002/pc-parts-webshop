@@ -27,9 +27,11 @@
         Add to cart
       </button>
     </div>
-    <button mat-flat-button color="accent">
-      <mat-icon matListIcon>build</mat-icon>
-      Add to build
-    </button>
+    <div matTooltip="This feature is currently not available">
+      <button mat-flat-button color="accent" disabled="true">
+        <mat-icon matListIcon>build</mat-icon>
+        Add to build
+      </button>
+    </div>
   </mat-card-actions>
 </mat-card>
