@@ -1,7 +1,7 @@
-<app-add-category *ngIf="user.role === 'ADMIN'"></app-add-category>
+<app-add-category (add)="add($event)" *ngIf="user.role === 'ADMIN'"></app-add-category>
 <section>
   <mat-card *ngFor="let category of categories">
-    <mat-card-title>{{ category.name }}</mat-card-title>
+    <mat-card-title class="capitalize">{{ category.name }}</mat-card-title>
     <mat-card-content>{{ category.description }}</mat-card-content>
     <mat-card-actions>
       <button [routerLink]="'parts/' + category.name.toLowerCase()" mat-flat-button color="primary">View products</button>

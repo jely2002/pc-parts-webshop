@@ -1,0 +1,64 @@
+<mat-expansion-panel (opened)="panelOpenState = true"
+                     (closed)="panelOpenState = false"
+                     [expanded]="panelOpenState"
+>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <button mat-flat-button color="primary">{{ panelOpenState ? "Cancel" : "Add product" }}</button>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <form (submit)="add()" [formGroup]="productForm" class="form">
+    <section class="form">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput formControlName="name" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="productForm.controls['name'].hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Description</mat-label>
+        <input type="text" matInput formControlName="description" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="productForm.controls['description'].hasError('required')">
+          Description is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>External URL</mat-label>
+        <input type="text" matInput formControlName="externalUrl" [errorStateMatcher]="matcher">
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Price</mat-label>
+        <input type="number" matInput formControlName="price" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="productForm.controls['price'].hasError('required')">
+          Price is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <input #imageInput hidden="true" formControlName="image" type="file" onclick="this.value=null" (change)="imageInputChange($event)" accept=".jpg,.png,.jpeg"/>
+      <mat-error *ngIf="productForm.controls['image'].hasError('required')">
+        A product image is <strong>required</strong>
+      </mat-error>
+      <button type="button" mat-flat-button color="primary" (click)="imageInput.click()">{{ selectedImage }}</button>
+      <mat-slide-toggle class="stock" color="primary" formControlName="hasStock">Has stock</mat-slide-toggle>
+      <button [disabled]="!productForm.valid" mat-flat-button type="submit" color="primary">Add</button>
+    </section>
+    <section *ngFor="let property of category != null ? category.propertyTypes : []" class="form">
+      <h1>{{ property.name }}</h1>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Value</mat-label>
+        <input [type]="property.type === 'INT' || property.type === 'DOUBLE' ? 'number' : 'text'" matInput [formControlName]="property.id + '.value'" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="productForm.controls[property.id + '.value'].hasError('required')">
+          Property value is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Description</mat-label>
+        <input type="text" matInput [formControlName]="property.id + '.description'" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="productForm.controls[property.id + '.description'].hasError('required')">
+          Property description is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-slide-toggle color="primary" [formControlName]="property.id + '.highlight'">Highlight property on card</mat-slide-toggle>
+    </section>
+  </form>
+</mat-expansion-panel>

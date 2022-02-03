@@ -17,3 +17,6 @@ $frontend-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.capitalize {
+  text-transform: capitalize;
+}

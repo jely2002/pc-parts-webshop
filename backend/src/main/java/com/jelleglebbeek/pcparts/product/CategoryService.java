@@ -2,9 +2,12 @@ package com.jelleglebbeek.pcparts.product;
 
 import com.jelleglebbeek.pcparts.exceptions.EntityNotFoundException;
 import com.jelleglebbeek.pcparts.product.entities.Category;
+import com.jelleglebbeek.pcparts.product.entities.properties.PropertyType;
 import com.jelleglebbeek.pcparts.product.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Set;
 
 @Service
 public class CategoryService {
@@ -25,6 +28,8 @@ public class CategoryService {
     }
 
     public Category create(Category category) {
+        Set<PropertyType> propertyTypes = category.getPropertyTypes();
+
         return this.categoryRepository.save(category);
     }
 

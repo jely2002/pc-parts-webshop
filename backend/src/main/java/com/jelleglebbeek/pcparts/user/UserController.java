@@ -7,13 +7,13 @@ import com.jelleglebbeek.pcparts.user.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 
-@PreAuthorize("hasAuthority('ADMIN')")
 @RestController()
 @RequestMapping("/user")
 public class UserController {
@@ -38,12 +38,14 @@ public class UserController {
         return userService.create(request);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping()
     public @ResponseBody
     Iterable<User> getUsersByPlatform() {
         return userService.findAll();
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/{id}")
     public @ResponseBody
     User getUser(@PathVariable UUID id) {
@@ -56,12 +58,14 @@ public class UserController {
             @PathVariable UUID id,
             @RequestBody User user
     ) {
+        userService.isSelf(id);
         return userService.update(id, user);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUser(@PathVariable UUID id) {
+        userService.isSelf(id);
         userService.delete(id);
     }
 }

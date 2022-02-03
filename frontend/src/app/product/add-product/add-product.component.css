@@ -1,0 +1,23 @@
+form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form section {
+  max-width: 400px;
+  margin-left: 2rem;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  display: block;
+}
+
+.stock {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

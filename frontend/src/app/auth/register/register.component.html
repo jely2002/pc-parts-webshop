@@ -1,5 +1,5 @@
 <section>
-  <form (submit)="submit()" [formGroup]="registerForm" class="example-form">
+  <form (submit)="captcha.execute()" [formGroup]="registerForm" class="example-form">
     <h1>Register an account on PC Parts</h1>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>First name</mat-label>
@@ -36,6 +36,10 @@
       <mat-error *ngIf="registerForm.controls['password'].hasError('required')">
         Password is <strong>required</strong>
       </mat-error>
+      <mat-error *ngIf="!registerForm.controls['password'].hasError('required') && registerForm.controls['password'].hasError('minlength')">
+        Password is <strong>not long enough</strong>
+      </mat-error>
+      <mat-hint>Minimum length 8</mat-hint>
     </mat-form-field>
     <mat-form-field class="full-width" appearance="outline">
       <mat-label>Repeat Password</mat-label>
@@ -48,5 +52,6 @@
       </mat-error>
     </mat-form-field>
     <button mat-flat-button [disabled]="!registerForm.valid" type="submit" color="primary">Register</button>
+    <re-captcha (resolved)="$event && submit($event)" [siteKey]="siteKey" size="invisible" #captcha></re-captcha>
   </form>
 </section>

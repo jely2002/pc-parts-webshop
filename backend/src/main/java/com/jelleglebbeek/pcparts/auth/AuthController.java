@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.GeneralSecurityException;
 import java.security.NoSuchAlgorithmException;
 
@@ -20,6 +21,7 @@ import java.security.NoSuchAlgorithmException;
 public class AuthController {
 
     private final AuthService authService;
+    private final CaptchaService captchaService;
 
     @Value("${jwt.lifetime}")
     private Long lifetime;
@@ -27,8 +29,14 @@ public class AuthController {
     private static final int millisecondsToSeconds = 1000;
 
     @Autowired
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, CaptchaService captchaService) {
         this.authService = authService;
+        this.captchaService = captchaService;
+    }
+
+    @PostMapping("/captcha")
+    public void verifyCaptcha(@RequestBody String token, HttpServletRequest request) {
+        this.captchaService.verifyCaptcha(token, request.getRemoteAddr());
     }
 
     @PostMapping("/login/initialize")

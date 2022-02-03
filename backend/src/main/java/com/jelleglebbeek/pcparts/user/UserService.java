@@ -4,6 +4,7 @@ import com.jelleglebbeek.pcparts.auth.Argon2PasswordEncoder;
 import com.jelleglebbeek.pcparts.auth.model.UserLogin;
 import com.jelleglebbeek.pcparts.exceptions.EmailExistsException;
 import com.jelleglebbeek.pcparts.exceptions.EntityNotFoundException;
+import com.jelleglebbeek.pcparts.exceptions.ForbiddenException;
 import com.jelleglebbeek.pcparts.user.entities.CreateUserInitializeRequest;
 import com.jelleglebbeek.pcparts.user.entities.CreateUserInitializeResponse;
 import com.jelleglebbeek.pcparts.user.entities.CreateUserRequest;
@@ -50,6 +51,18 @@ public class UserService {
     public UserService(UserRepository userRepository, Argon2PasswordEncoder argon2PasswordEncoder) {
         this.userRepository = userRepository;
         this.argon2PasswordEncoder = argon2PasswordEncoder;
+    }
+
+    public void isSelf(UUID userId) {
+        boolean isAdmin = SecurityContextHolder.getContext().getAuthentication().
+                getAuthorities().contains(Role.ADMIN.toString());
+        if (isAdmin) return;
+        User existingUser = userRepository
+                .findById(userId)
+                .orElseThrow(() -> new ForbiddenException("only own user can be changed"));
+        if (!existingUser.getEmail().equals(SecurityContextHolder.getContext().getAuthentication().getName())) {
+            throw new ForbiddenException("only own user can be changed");
+        }
     }
 
     public CreateUserInitializeResponse createInitialize(CreateUserInitializeRequest request) throws NoSuchAlgorithmException {
@@ -119,9 +132,6 @@ public class UserService {
         }
         if (appUser.getPassword() != null) {
             existingUser.setPassword(hashPassword(appUser.getPassword()));
-        }
-        if (appUser.getRole() != null) {
-            existingUser.setRole(appUser.getRole());
         }
         return userRepository.save(existingUser);
     }

@@ -1,4 +1,10 @@
-import { PropertyTypeModel } from "./property-type.model";
+import { CreatePropertyTypeRequest, PropertyTypeModel } from "./property-type.model";
+
+export type CreateCategoryRequest = {
+  name: string,
+  description: string,
+  propertyTypes: CreatePropertyTypeRequest[],
+}
 
 export class CategoryModel {
   constructor(

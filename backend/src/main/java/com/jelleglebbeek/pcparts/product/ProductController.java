@@ -4,6 +4,7 @@ import com.jelleglebbeek.pcparts.exceptions.BadRequestException;
 import com.jelleglebbeek.pcparts.product.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,11 +50,13 @@ public class ProductController {
         return this.productService.findByCategory(category);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping()
     public Product createProduct(@RequestBody Product product) {
         return this.productService.create(product);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/{id}/image")
     public void addImage(@RequestParam MultipartFile file, @PathVariable UUID id) {
         Product addImage = this.productService.findOne(id);
@@ -66,11 +69,13 @@ public class ProductController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PatchMapping("/{id}")
     public Product updateProduct(@PathVariable UUID id, @RequestBody Product product) {
         return this.productService.update(id, product);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProduct(@PathVariable UUID id) {

@@ -7,21 +7,42 @@
       <button mat-flat-button color="primary">{{ panelOpenState ? "Cancel" : "Add category" }}</button>
     </mat-panel-title>
   </mat-expansion-panel-header>
-  <form (submit)="add()" [formGroup]="categoryForm">
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Name</mat-label>
-      <input type="text" matInput formControlName="name" [errorStateMatcher]="matcher">
-      <mat-error *ngIf="categoryForm.controls['name'].hasError('required')">
-        Name is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field class="full-width" appearance="outline">
-      <mat-label>Description</mat-label>
-      <input type="text" matInput formControlName="description" [errorStateMatcher]="matcher">
-      <mat-error *ngIf="categoryForm.controls['description'].hasError('required')">
-        Description is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    <button [disabled]="!categoryForm.valid" mat-flat-button type="submit" color="primary">Add</button>
+  <form (submit)="add()" [formGroup]="categoryForm" class="form main">
+    <section class="form">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input type="text" matInput formControlName="name" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="categoryForm.controls['name'].hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Description</mat-label>
+        <input type="text" matInput formControlName="description" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="categoryForm.controls['description'].hasError('required')">
+          Description is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <button mat-flat-button type="button" (click)="addPropertyType()" class="add-property" color="primary">Add property type</button>
+      <button [disabled]="!categoryForm.valid" mat-flat-button type="submit" color="primary">Add</button>
+    </section>
+    <section class="form property-list">
+      <div *ngFor="let propertyType of propertyTypes" class="property">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input type="text" matInput [formControlName]="propertyType + '.name'" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="categoryForm.controls[propertyType + '.name'].hasError('required')">
+            Name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Type</mat-label>
+          <mat-select [formControlName]="propertyType + '.type'">
+            <mat-option *ngFor="let dataType of dataTypes" [value]="dataType">{{ dataType }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-flat-button color="primary" (click)="removePropertyType(propertyType)" type="button"><mat-icon>remove</mat-icon></button>
+      </div>
+    </section>
   </form>
 </mat-expansion-panel>

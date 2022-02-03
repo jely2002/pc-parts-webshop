@@ -20,6 +20,10 @@
   cursor: pointer;
 }
 
+.nav-categories {
+  margin-left: 1rem;
+}
+
 mat-toolbar-row {
   flex-wrap: wrap;
 }

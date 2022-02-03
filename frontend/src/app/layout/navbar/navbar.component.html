@@ -4,7 +4,7 @@
       <mat-icon [routerLink]="'/'" class="logo-icon" aria-hidden="false" aria-label="user verified icon">memory</mat-icon>
       <span class="logo-text" [routerLink]="'/'">PC Parts</span>
       <section class="nav-categories">
-        <a mat-button [routerLink]="'parts/' + category.name.toLowerCase()" *ngFor="let category of categories">{{ category.name }}</a>
+        <a class="capitalize" mat-button [routerLink]="'parts/' + category.name.toLowerCase()" *ngFor="let category of categories">{{ category.name }}</a>
       </section>
       <span class="nav-spacer"></span>
       <section class="nav-buttons">

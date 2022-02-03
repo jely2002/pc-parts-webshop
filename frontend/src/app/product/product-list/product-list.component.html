@@ -1,5 +1,6 @@
+<app-add-product (add)="add()" *ngIf="user.role === 'ADMIN'"></app-add-product>
 <section class="product-list">
-  <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
+  <app-product-card (delete)="delete($event)" *ngFor="let product of products" [product]="product" [admin]="this.user.role === 'ADMIN'"></app-product-card>
 </section>
 <section *ngIf="products?.length == 0" class="no-products">
   <mat-icon>sentiment_dissatisfied</mat-icon>

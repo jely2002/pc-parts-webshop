@@ -1,7 +1,35 @@
 form {
-  max-width: 300px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form section {
+  max-width: 400px;
+  margin-left: 2rem;
 }
 
 mat-form-field {
   width: 100%;
+}
+
+.add-property {
+  margin-right: 1rem;
+}
+
+.main {
+  height: 100%;
+}
+
+.property-list {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 100%;
+  flex: 1;
+}
+
+.property {
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }

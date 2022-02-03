@@ -29,6 +29,10 @@ export class CategoryListComponent implements OnInit {
     this.user = this.authService.getUser();
   }
 
+  add(event: CategoryModel) {
+    this.categories.push(event);
+  }
+
   delete(category: string) {
     this.categoryService.delete(category).subscribe({
         next: () => {

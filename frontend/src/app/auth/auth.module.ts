@@ -10,6 +10,7 @@ import { MatInputModule } from "@angular/material/input";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { ProfileComponent } from './profile/profile.component';
+import { RecaptchaModule } from "ng-recaptcha";
 
 
 
@@ -27,7 +28,8 @@ import { ProfileComponent } from './profile/profile.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    RecaptchaModule
   ]
 })
 export class AuthModule { }

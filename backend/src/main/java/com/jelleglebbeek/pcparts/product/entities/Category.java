@@ -5,6 +5,7 @@ import com.jelleglebbeek.pcparts.product.entities.properties.PropertyType;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -20,7 +21,7 @@ public class Category {
     private String description;
 
     @JsonManagedReference("category")
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<PropertyType> propertyTypes;
 
 }

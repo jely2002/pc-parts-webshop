@@ -79,6 +79,11 @@
       "name": "jwt.cookie.restrict-site",
       "type": "java.lang.Boolean",
       "description": "Set to true to prevent the JWT cookie from being sent to other sites."
+    },
+    {
+      "name": "captcha.secret",
+      "type": "java.lang.String",
+      "description": "The reCaptcha 2 secret key."
     }
   ]
 }
