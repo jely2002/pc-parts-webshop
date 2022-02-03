@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',
+  apiUrl: 'https://pcparts-api-pjmso.ondigitalocean.app/api',
   captchaKey: '6LcjXVQeAAAAAGRbVYtio58T4TaLE8XNtzZ_nfVu',
 };
 
